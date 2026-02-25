@@ -7,7 +7,7 @@ import react from '@astrojs/react'
 
 export default defineConfig({
   site: "https://jzhang1011.github.io",
-  base: "/portfolio",
+  base: "/Portfolio",
   integrations: [
     react(),
     mdx(),
