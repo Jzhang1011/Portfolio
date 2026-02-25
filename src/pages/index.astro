@@ -1,63 +1,213 @@
 ---
-import Layout from '@/layouts/Layout.astro'
-import { getCollection } from 'astro:content'
+import PortfolioLayout from "../layouts/PortfolioLayout.astro";
 
-import HeroSection from '@/components/blocks/hero-section/hero-section'
-import Blog from '@/components/blocks/blog-component/blog-component'
-import CTA from '@/components/blocks/cta-section/cta-section'
+const impactTiles = [
+  { title: "KPI Operating System (multi-LOB)", desc: "Standardized KPI definitions and reporting rhythms to improve executive trust and decision clarity.", tags: ["Ops", "Governance", "Measurement"] },
+  { title: "Executive reporting risk reduction", desc: "Reduced spreadsheet risk via controlled logic, QA steps, and metric governance.", tags: ["Ops", "Governance"] },
+  { title: "MOR/QBR performance rhythm", desc: "Built repeatable readouts that shift reporting from status to actions, risks, and priorities.", tags: ["Ops", "Measurement"] },
+  { title: "Funnel & lifecycle standardization", desc: "Aligned Marketing ↔ Sales stage definitions and conversion metrics to create a single funnel truth.", tags: ["Pipeline", "Growth", "Measurement"] },
+  { title: "Spend → revenue linkage", desc: "Connected expense and performance to revenue views for finance-grade ROI conversations.", tags: ["Ops", "Measurement"] },
+  { title: "Journey measurement framework", desc: "Prioritized journeys, defined stage KPIs, and translated insight into an optimization backlog.", tags: ["Journey", "Growth", "Measurement"] },
+];
 
-// Get all blog posts and convert to the format expected by components
-const allPosts = await getCollection('blog')
-const publishedPosts = allPosts
-
-// Convert to the format expected by the React components
-const allBlogPosts = publishedPosts
-  .map((post, index) => ({
-    id: post.data.id || index + 1,
-    slug: post.data.slug || post.id,
-    title: post.data.title,
-    description: post.data.description,
-    imageUrl: post.data.imageUrl || '/images/blog-post/post-1.webp',
-    imageAlt: post.data.imageAlt || post.data.title,
-    pubDate: post.data.pubDate,
-    category: post.data.category,
-    author: post.data.author,
-    avatarUrl: post.data.avatarUrl || '/images/avatars/post-1.webp',
-    readTime: post.data.readTime || 5,
-    featured: post.data.featured || false
-  }))
-  .sort((a, b) => b.pubDate.localeCompare(a.pubDate))
-
-// Page-specific SEO configuration
-const pageTitle = ''
-const pageDescription =
-  'Discover insightful articles and tutorials about modern web development, Astro, and building fast, scalable websites with cutting-edge tools.'
-const pageKeywords =
-  'web development, Astro tutorials, scalable websites, modern web technologies, SEO optimization, Tailwind CSS, shadcn UI'
-
-// Structured data for better SEO
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Ink',
-  description: pageDescription,
-  applicationCategory: 'DeveloperApplication',
-  operatingSystem: 'Any',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD'
-  },
-  author: {
-    '@type': 'Organization',
-    name: 'Your Company Name'
-  }
-}
+const featured = [
+  { title: "KPI Operating System (Multi-LOB)", desc: "Definitions + governance + cadence to improve exec confidence.", href: "/case-studies#kpi-os" },
+  { title: "Pipeline & Funnel Standardization", desc: "Lifecycle clarity for conversion visibility and coverage planning.", href: "/case-studies#pipeline" },
+  { title: "Spend → Revenue Linkage", desc: "Finance-grade linkage for credible ROI discussions.", href: "/case-studies#spend-revenue" },
+  { title: "Journey Measurement Framework", desc: "Prioritize and optimize journeys with a repeatable loop.", href: "/case-studies#journey" },
+  { title: "MIA: Marketing Intelligence Assistant", desc: "Governed self-serve intelligence with citations + role-based responses.", href: "/ai#mia" },
+  { title: "MMM Copilot", desc: "Scenario-based learning + decision support for channel owners.", href: "/ai#mmm" },
+];
 ---
 
-<Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
-  <!--  All Sections -->
-  <HeroSection blogData={allBlogPosts} client:load />
-  <Blog blogData={allBlogPosts} client:load />
-  <CTA />
-</Layout>
+<PortfolioLayout
+  title="Jessie Zhang | Marketing Intelligence & Ops"
+  description="Marketing Ops, Marketing Intelligence, Growth Analytics, and AI Enablement. Executive-trust measurement systems, operating rhythms, and governed copilots."
+>
+  <!-- HERO -->
+  <section class="grid gap-6 lg:grid-cols-2">
+    <div class="rounded-2xl border bg-white p-7 shadow-sm">
+      <div class="text-xs uppercase tracking-[0.22em] text-neutral-500">
+        VP Marketing Ops / Head of Marketing Intelligence / Head of Growth Analytics
+      </div>
+
+      <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-neutral-900 sm:text-5xl">
+        Build executive-trust measurement systems — scaled with governed AI copilots.
+      </h1>
+
+      <p class="mt-4 max-w-prose text-base leading-7 text-neutral-700">
+        I help marketing organizations move from fragmented reporting to a trusted performance operating system:
+        clear definitions, automated visibility, and decision rhythms that align Marketing, Sales, Product, and Finance.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-2">
+        <a class="rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800" href="/impact">
+          Explore Impact
+        </a>
+        <a class="rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-100" href="/case-studies">
+          Case Studies
+        </a>
+        <a class="rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-100" href="/ai">
+          AI Work
+        </a>
+      </div>
+
+      <div class="mt-7 flex flex-wrap gap-2">
+        {["Measurement Strategy", "Ops & Governance", "Growth & Journeys", "AI Enablement"].map((t) => (
+          <span class="rounded-full bg-neutral-100 px-3 py-1 text-xs uppercase tracking-wider text-neutral-600">
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <div class="rounded-2xl border bg-white p-7 shadow-sm">
+      <h2 class="text-sm font-bold uppercase tracking-[0.18em] text-neutral-700">Proof highlights</h2>
+      <ul class="mt-4 space-y-3 text-sm leading-6 text-neutral-700">
+        <li>Standardized KPI definitions and QA to improve trust in executive forums.</li>
+        <li>Built MOR/QBR operating rhythms that convert metrics into decisions.</li>
+        <li>Connected spend, pipeline, and performance for finance-grade conversations.</li>
+        <li>Operationalized AI copilots with citations, no-inference rules, and adoption plans.</li>
+      </ul>
+
+      <div class="mt-7 border-t pt-5">
+        <div class="text-xs uppercase tracking-[0.18em] text-neutral-500">Most relevant to</div>
+        <div class="mt-1 text-sm text-neutral-800">
+          CMO • RevOps/CRO • Finance • Product • Data/IT • Channel Owners
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="mt-12">
+    <div class="flex items-baseline justify-between gap-4">
+      <h2 class="text-sm font-bold uppercase tracking-[0.18em] text-neutral-700">What I do</h2>
+      <div class="text-xs uppercase tracking-[0.18em] text-neutral-400">Four repeatable pillars</div>
+    </div>
+
+    <div class="mt-4 grid gap-4 md:grid-cols-2">
+      {[
+        ["Measurement Strategy", "KPIs leaders can use: KPI trees, incrementality principles, MMM adoption paths, decision-ready interpretation."],
+        ["Operating System & Governance", "Definitions, QA and change control, RACI clarity, and rhythms that prevent “multiple truths.”"],
+        ["Growth & Optimization", "Lifecycle/funnel standardization, journey measurement, prioritization models, and test backlogs focused on leverage."],
+        ["AI Enablement & Automation", "Source-cited, no-inference, role-based copilots that scale onboarding, self-serve intelligence, and decision velocity."],
+      ].map(([title, desc]) => (
+        <div class="rounded-2xl border bg-white p-6 shadow-sm">
+          <h3 class="text-xs font-bold uppercase tracking-[0.18em] text-neutral-600">{title}</h3>
+          <p class="mt-2 text-sm leading-6 text-neutral-700">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section class="mt-12">
+    <div class="flex items-baseline justify-between gap-4">
+      <h2 class="text-sm font-bold uppercase tracking-[0.18em] text-neutral-700">Featured work</h2>
+      <a class="text-xs uppercase tracking-[0.18em] text-violet-700 hover:underline" href="/case-studies">
+        View all
+      </a>
+    </div>
+
+    <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {featured.map((f) => (
+        <a href={f.href} class="group rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-[1px] hover:shadow-md">
+          <div class="flex items-start justify-between gap-3">
+            <h3 class="text-sm font-semibold text-neutral-900">{f.title}</h3>
+            <span class="text-neutral-300 transition group-hover:text-neutral-500">↗</span>
+          </div>
+          <p class="mt-2 text-sm leading-6 text-neutral-700">{f.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- IMPACT PREVIEW -->
+  <section class="mt-12">
+    <div class="flex items-baseline justify-between gap-4">
+      <h2 class="text-sm font-bold uppercase tracking-[0.18em] text-neutral-700">Impact preview</h2>
+      <a class="text-xs uppercase tracking-[0.18em] text-violet-700 hover:underline" href="/impact">
+        Explore Impact
+      </a>
+    </div>
+
+    <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {impactTiles.map((t) => (
+        <div class="rounded-2xl border bg-white p-6 shadow-sm">
+          <h3 class="text-sm font-semibold text-neutral-900">{t.title}</h3>
+          <p class="mt-2 text-sm leading-6 text-neutral-700">{t.desc}</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {t.tags.map((tag) => (
+              <span class="rounded-full bg-neutral-100 px-3 py-1 text-[11px] uppercase tracking-wider text-neutral-600">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- AI SPOTLIGHT -->
+  <section class="mt-12 rounded-2xl border bg-neutral-900 p-8 text-white shadow-md">
+    <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+      <div>
+        <div class="text-xs uppercase tracking-[0.22em] text-white/70">AI Enablement & Automation</div>
+        <h2 class="mt-2 text-2xl font-extrabold tracking-tight">Operationalized AI, not “AI theater.”</h2>
+        <p class="mt-3 max-w-prose text-sm leading-6 text-white/80">
+          I build copilots that scale knowledge and decision support with governance: citations, no-inference rules, and role-/scenario-based experiences.
+        </p>
+      </div>
+      <div class="mt-4 md:mt-0">
+        <a class="inline-flex rounded-full bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-700" href="/ai">
+          View AI work
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h3 class="text-sm font-semibold">MIA — Marketing Intelligence Assistant</h3>
+        <p class="mt-2 text-sm leading-6 text-white/80">
+          Self-serve access to SOPs, RACI ownership, dashboard/data locations (Salesforce, Tableau, spreadsheets), plus curated performance views for users without dashboard access.
+        </p>
+        <ul class="mt-4 space-y-2 text-sm text-white/75">
+          <li><span class="font-semibold text-white">Guardrails:</span> citations • no inference • role-based details</li>
+          <li><span class="font-semibold text-white">Adoption:</span> training • ambassador model • office hours • newsletter + videos</li>
+          <li><span class="font-semibold text-white">Outcome:</span> faster “where is the truth?” + strong new-hire onboarding use case</li>
+        </ul>
+        <a class="mt-4 inline-flex text-sm font-semibold text-yellow-300 hover:underline" href="/ai#mia">Read case →</a>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h3 class="text-sm font-semibold">MMM Copilot — Learning + Decision Support</h3>
+        <p class="mt-2 text-sm leading-6 text-white/80">
+          Role- and scenario-based MMM assistant for channel owners and revenue marketers, enabling fast MMM ramp-up and 24/7 guidance for media investment decisions.
+        </p>
+        <ul class="mt-4 space-y-2 text-sm text-white/75">
+          <li><span class="font-semibold text-white">Guardrails:</span> role-based • scenario-based workflows</li>
+          <li><span class="font-semibold text-white">Adoption:</span> training • learning hub • office hours</li>
+          <li><span class="font-semibold text-white">Outcome:</span> rapid enablement; strong engagement from intended audience (~80% usage)</li>
+        </ul>
+        <a class="mt-4 inline-flex text-sm font-semibold text-yellow-300 hover:underline" href="/ai#mmm">Read case →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mt-12 rounded-2xl border bg-white p-7 shadow-sm">
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+        <h2 class="text-lg font-extrabold tracking-tight text-neutral-900">Explore deeper</h2>
+        <p class="mt-1 text-sm text-neutral-700">Impact tiles for fast scanning, and case studies for proof.</p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <a class="rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800" href="/impact">Impact</a>
+        <a class="rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-100" href="/case-studies">Case Studies</a>
+        <a class="rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-100" href="/playbooks">Playbooks</a>
+        <a class="rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-100" href="/about">About</a>
+      </div>
+    </div>
+  </section>
+</PortfolioLayout>
