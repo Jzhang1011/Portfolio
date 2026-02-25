@@ -1,0 +1,86 @@
+---
+import PortfolioLayout from "../layouts/PortfolioLayout.astro";
+
+const sections = [
+  {
+    id: "kpi-os",
+    title: "KPI Operating System for Multi-LOB Marketing",
+    meta: "Angle: Ops + Intelligence • Standardization + trust",
+    context: "Multi-LOB reporting required consistent KPIs and repeatable executive readouts.",
+    broken: ["Inconsistent definitions and manual processes created trust and accuracy risk."],
+    did: ["Established KPI definitions, governance, QA steps, and a monthly operating rhythm."],
+    shipped: ["KPI dictionary + governance, dashboard index, MOR template."],
+    adoption: ["Embedded into rhythms; enabled stakeholders via documentation and support."],
+    outcomes: ["Improved exec confidence and reduced reporting risk."],
+    next: ["Expand automation and metric health monitoring."],
+  },
+  {
+    id: "pipeline",
+    title: "Pipeline & Funnel Measurement Standardization",
+    meta: "Angle: Growth + Rev alignment • Lifecycle clarity",
+    context: "Marketing and Sales needed a shared funnel truth for performance and planning.",
+    broken: ["Ambiguous lifecycle definitions and inconsistent conversion views."],
+    did: ["Defined stages, conversion metrics, and visibility that supports coverage discussions."],
+    shipped: ["Lifecycle map, funnel dashboard, coverage targets V1."],
+    adoption: ["Aligned stakeholders on definitions and usage in operating rhythms."],
+    outcomes: ["Clearer accountability and improved planning inputs."],
+    next: ["Instrument buying-group and channel-level diagnostics."],
+  },
+  {
+    id: "spend-revenue",
+    title: "Spend → Revenue Linkage (Finance-grade Reporting)",
+    meta: "Angle: Ops + Finance alignment • ROI credibility",
+    context: "Expense lived outside core performance tools; leaders needed credible connection to outcomes.",
+    broken: ["Hard to reconcile expense, performance, and revenue across systems."],
+    did: ["Defined mappings, reconciliation logic, and audit-friendly reporting views."],
+    shipped: ["Spend mappings, linked datasets, ROI views used in readouts."],
+    adoption: ["Enabled stakeholders with documentation and repeatable views."],
+    outcomes: ["Stronger budget allocation discussions grounded in consistent data."],
+    next: ["Expand to journey-level unit economics and incrementality."],
+  },
+  {
+    id: "journey",
+    title: "Customer Journey Measurement Framework",
+    meta: "Angle: Growth + Ops • Prioritize and optimize journeys",
+    context: "Needed a structured way to prioritize journeys and focus optimization effort.",
+    broken: ["Too many potential journeys; unclear KPI ownership and instrumentation requirements."],
+    did: ["Built journey KPI mapping, prioritization criteria, and a repeatable optimization loop."],
+    shipped: ["Journey scorecard, KPI tree per stage, instrumentation checklist, test backlog template."],
+    adoption: ["Embedded into planning and readouts to keep focus on highest-leverage journeys."],
+    outcomes: ["Clearer prioritization and faster movement from insight to action."],
+    next: ["Layer in experimentation and incrementality by journey."],
+  },
+];
+---
+
+<PortfolioLayout title="Case Studies | Jessie Zhang" description="VP-style case studies: context → what was broken → what shipped → adoption → outcomes.">
+  <section class="rounded-2xl border bg-white p-7 shadow-sm">
+    <div class="text-xs uppercase tracking-[0.22em] text-neutral-500">Case Studies</div>
+    <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-neutral-900">Deep proof</h1>
+    <p class="mt-3 max-w-prose text-sm leading-6 text-neutral-700">
+      A consistent VP format: Context → What was broken → What I did → What shipped → Adoption → Outcomes → Next.
+      AI-specific work is on the AI page.
+    </p>
+
+    <div class="mt-5 flex flex-wrap gap-2">
+      {sections.map((s) => (
+        <a class="rounded-full bg-neutral-100 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-neutral-700 hover:bg-neutral-200" href={`#${s.id}`}>
+          {s.id.replace("-", " ")}
+        </a>
+      ))}
+      <a class="rounded-full bg-violet-600 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-violet-700" href="/ai">
+        AI cases →
+      </a>
+    </div>
+  </section>
+
+  <section class="mt-6 space-y-6">
+    {sections.map((s) => (
+      <article id={s.id} class="rounded-2xl border bg-white p-7 shadow-sm scroll-mt-28">
+        <div class="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
+          <div>
+            <h2 class="text-xl font-extrabold tracking-tight text-neutral-900">{s.title}</h2>
+            <div class="mt-1 text-xs uppercase tracking-[0.18em] text-neutral-500">{s.meta}</div>
+          </div>
+          <a class="text-sm font-semibold text-violet-700 hover:underline" href="#top">Back to top</a>
+        </div>
