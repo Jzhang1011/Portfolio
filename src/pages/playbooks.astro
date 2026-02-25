@@ -1,0 +1,64 @@
+---
+import PortfolioLayout from "../layouts/PortfolioLayout.astro";
+
+const playbooks = {
+  measurement: [
+    { name: "Marketing Performance Operating System", desc: "Cadence, owners, QA, escalation paths, and readout rules." },
+    { name: "KPI Tree + Metric Dictionary", desc: "Definitions, calculation logic, owners, and change control." },
+    { name: "Funnel/Lifecycle Governance", desc: "Stage definitions, conversion metrics, handoff rules across Marketing ↔ Sales." },
+    { name: "Journey Prioritization Scorecard", desc: "Value × feasibility × measurement readiness to focus optimization." },
+    { name: "Pipeline Coverage Goals V1", desc: "Target setting, inspection cadence, and gap-to-action loop." },
+    { name: "Tool Evaluation Scorecard", desc: "Build vs buy, integration/FTE, operating model impact." },
+  ],
+  ai: [
+    { name: "AI Use-Case Prioritization", desc: "Value × feasibility × risk." },
+    { name: "RAG Governance Checklist", desc: "Citations, no inference, escalation, red-team tests." },
+    { name: "AI Adoption Operating Rhythm", desc: "Training cohorts, office hours, ambassadors, comms." },
+    { name: "Prompt Library for MOR/QBR", desc: "Consistent narratives + recommendations." },
+    { name: "AI Quality Monitoring", desc: "Unanswered intents, citation coverage, feedback loop." },
+  ],
+};
+---
+
+<PortfolioLayout title="Playbooks | Jessie Zhang" description="VP-ready playbooks for measurement operating systems and AI enablement.">
+  <section class="rounded-2xl border bg-white p-7 shadow-sm">
+    <div class="text-xs uppercase tracking-[0.22em] text-neutral-500">Playbooks</div>
+    <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-neutral-900">How I operate</h1>
+    <p class="mt-3 max-w-prose text-sm leading-6 text-neutral-700">
+      Reusable frameworks that show my approach to building trusted measurement systems and scaling adoption.
+    </p>
+  </section>
+
+  <section class="mt-6 grid gap-4 md:grid-cols-2">
+    <div class="rounded-2xl border bg-white p-7 shadow-sm">
+      <h2 class="text-sm font-bold uppercase tracking-[0.18em] text-neutral-700">Measurement & Ops</h2>
+      <div class="mt-4 space-y-4">
+        {playbooks.measurement.map((p) => (
+          <div class="rounded-2xl bg-neutral-50 p-5">
+            <div class="text-sm font-semibold text-neutral-900">{p.name}</div>
+            <div class="mt-1 text-sm leading-6 text-neutral-700">{p.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="rounded-2xl border bg-white p-7 shadow-sm">
+      <h2 class="text-sm font-bold uppercase tracking-[0.18em] text-neutral-700">AI</h2>
+      <div class="mt-4 space-y-4">
+        {playbooks.ai.map((p) => (
+          <div class="rounded-2xl bg-neutral-50 p-5">
+            <div class="text-sm font-semibold text-neutral-900">{p.name}</div>
+            <div class="mt-1 text-sm leading-6 text-neutral-700">{p.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-6 rounded-2xl border bg-white p-7 shadow-sm">
+    <h2 class="text-lg font-extrabold tracking-tight text-neutral-900">Tip</h2>
+    <p class="mt-2 text-sm leading-6 text-neutral-700">
+      You can turn the top 2–3 playbooks into one-page PDFs later (great for interviews).
+    </p>
+  </section>
+</PortfolioLayout>
