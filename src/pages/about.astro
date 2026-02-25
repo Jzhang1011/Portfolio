@@ -1,0 +1,60 @@
+---
+import PortfolioLayout from "../layouts/PortfolioLayout.astro";
+---
+
+<PortfolioLayout title="About | Jessie Zhang" description="About Jessie Zhang: Marketing Ops, Intelligence, Growth Analytics, AI Enablement.">
+  <section class="rounded-2xl border bg-white p-7 shadow-sm">
+    <div class="text-xs uppercase tracking-[0.22em] text-neutral-500">About</div>
+    <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-neutral-900">Jessie Zhang</h1>
+    <p class="mt-3 max-w-prose text-sm leading-6 text-neutral-700">
+      I’m a Marketing Intelligence and Operations leader with deep strength in measurement strategy, governance,
+      growth analytics, and adoption. I build systems executives trust — and I operationalize AI copilots (with guardrails)
+      to scale knowledge and decision support.
+    </p>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-2">
+      <div class="rounded-2xl bg-neutral-50 p-5">
+        <h2 class="text-xs font-bold uppercase tracking-[0.18em] text-neutral-600">Leadership principles</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-neutral-700">
+          <li><strong>Clarity wins:</strong> define decisions, then metrics, then data.</li>
+          <li><strong>Trust is designed:</strong> governance, QA, and ownership prevent drift.</li>
+          <li><strong>Adoption is built:</strong> enablement and rhythms make systems stick.</li>
+          <li><strong>Ship iteratively:</strong> V1 fast, then scale based on usage and outcomes.</li>
+        </ul>
+      </div>
+
+      <div class="rounded-2xl bg-neutral-50 p-5" id="contact">
+        <h2 class="text-xs font-bold uppercase tracking-[0.18em] text-neutral-600">Contact</h2>
+        <div class="mt-3 space-y-2 text-sm leading-6 text-neutral-700">
+          <div>
+            <span class="font-semibold text-neutral-900">LinkedIn:</span>
+            <a class="ml-2 text-violet-700 hover:underline" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+              add your link
+            </a>
+          </div>
+          <div>
+            <span class="font-semibold text-neutral-900">Email:</span>
+            <a class="ml-2 text-violet-700 hover:underline" href="mailto:you@email.com">you@email.com</a>
+          </div>
+          <div>
+            <span class="font-semibold text-neutral-900">Resume:</span>
+            <a class="ml-2 text-violet-700 hover:underline" href="/resume.pdf" target="_blank" rel="noopener">
+              add resume file
+            </a>
+          </div>
+        </div>
+        <p class="mt-4 text-xs uppercase tracking-[0.18em] text-neutral-500">
+          Tip: upload your PDF to <code class="rounded bg-white px-1 py-0.5">public/resume.pdf</code>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-6 rounded-2xl border bg-white p-7 shadow-sm">
+    <h2 class="text-lg font-extrabold tracking-tight text-neutral-900">What I’m looking for</h2>
+    <p class="mt-2 text-sm leading-6 text-neutral-700">
+      VP Marketing Ops / Head of Marketing Intelligence / Head of Growth Analytics roles where measurement, operating rhythm,
+      and adoption matter — and where AI can responsibly accelerate impact.
+    </p>
+  </section>
+</PortfolioLayout>
