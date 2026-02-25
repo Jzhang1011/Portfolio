@@ -1,0 +1,29 @@
+---
+import PortfolioNav from "../components/PortfolioNav.astro";
+
+const { title = "Jessie Zhang | Portfolio", description = "Marketing Ops, Intelligence, Growth Analytics, AI Enablement" } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+
+  <body class="min-h-screen bg-[#F5F5F7] text-neutral-900">
+    <PortfolioNav currentPath={currentPath} />
+    <main class="mx-auto max-w-6xl px-4 py-10">
+      <slot />
+    </main>
+
+    <footer class="border-t bg-white/60 py-8">
+      <div class="mx-auto max-w-6xl px-4 text-xs uppercase tracking-widest text-neutral-500">
+        © {new Date().getFullYear()} Jessie Zhang • Built with Astro
+      </div>
+    </footer>
+  </body>
+</html>
