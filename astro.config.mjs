@@ -16,7 +16,7 @@ export default defineConfig({
       customPages: [],
       serialize(item) {
         // Homepage - highest priority
-        if (item.url === 'http://localhost:4321/') {
+        if (item.url === 'https://jzhang1011.github.io/Portfolio/') {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'daily'
           item.priority = 1.0
