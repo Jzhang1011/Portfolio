@@ -6,7 +6,8 @@ import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 
 export default defineConfig({
-  site: 'http://localhost:4321/',
+  site: "https://jzhang1011.github.io",
+  base: "/portfolio",
   integrations: [
     react(),
     mdx(),
