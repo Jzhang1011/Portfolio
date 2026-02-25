@@ -1,0 +1,95 @@
+---
+import PortfolioLayout from "../layouts/PortfolioLayout.astro";
+
+const tags = ["All", "Ops", "Governance", "Measurement", "Pipeline", "Journey", "Growth", "AI", "Adoption"];
+
+const tiles = [
+  { title: "KPI Operating System (multi-LOB)", desc: "Standardized KPI definitions and reporting rhythms across business lines to improve executive trust and decision clarity.", tags: ["Ops", "Governance", "Measurement"] },
+  { title: "Executive reporting risk reduction", desc: "Reduced spreadsheet surprises via controlled calculations, locked logic, and QA steps to protect credibility in leadership forums.", tags: ["Ops", "Governance"] },
+  { title: "Marketing performance rhythm (MOR/QBR)", desc: "Built repeatable readouts that move teams from status to actions, risks, and priorities across stakeholders.", tags: ["Ops", "Measurement"] },
+  { title: "Funnel & lifecycle standardization (Marketing ↔ Sales)", desc: "Defined lifecycle stages and conversion metrics to create a single view of funnel performance and handoffs.", tags: ["Pipeline", "Growth", "Measurement"] },
+  { title: "Pipeline coverage goals V1", desc: "Developed an initial pipeline coverage framework to set targets, identify gaps, and iterate with a steady cadence.", tags: ["Pipeline", "Measurement"] },
+  { title: "Spend → revenue linkage (finance-grade)", desc: "Connected expense and performance to revenue views to support credible ROI conversations and budget allocation decisions.", tags: ["Ops", "Measurement"] },
+  { title: "Journey measurement framework", desc: "Mapped journeys, defined stage KPIs, and prioritized optimization effort based on value, feasibility, and expected impact.", tags: ["Journey", "Growth", "Measurement"] },
+  { title: "Optimization loop: insight → backlog → action", desc: "Turned insights into a focused execution system: prioritized hypotheses, test backlog, and repeatable readout format.", tags: ["Journey", "Growth", "Adoption"] },
+  { title: "Tool evaluation: measurement / multi-touch platform", desc: "Built requirements and evaluation criteria (including integration effort and operating model impact) to guide build-vs-buy decisions.", tags: ["Ops", "Governance"] },
+  { title: "AI: MIA for self-serve truth", desc: "Launched a governed, role-based copilot to find SOPs, RACI ownership, dashboard locations, and data sources with citations and no-inference rules.", tags: ["AI", "Ops", "Adoption"] },
+  { title: "AI: MMM learning + decision support", desc: "Built a scenario- and role-based MMM assistant to ramp channel owners and revenue marketers and support media investment decisions.", tags: ["AI", "Measurement", "Adoption"] },
+  { title: "Governance that scales", desc: "Established ownership, documentation standards, escalation paths, and change control to prevent metric drift and “multiple truths.”", tags: ["Governance", "Ops"] },
+  { title: "Measurement as a product", desc: "Treated reporting and measurement like a product: user needs, documentation, QA, adoption metrics, and an iterative roadmap tied to outcomes.", tags: ["Ops", "Adoption"] },
+  { title: "AI adoption model", desc: "Drove adoption through training cohorts, ambassador network, office hours, internal launches, and short use-case videos.", tags: ["AI", "Adoption"] },
+  { title: "AI: pre-structured performance access", desc: "Enabled broader access via curated performance views for users without dashboard permissions.", tags: ["AI", "Ops"] },
+];
+---
+
+<PortfolioLayout title="Impact | Jessie Zhang" description="Impact library: VP-level outcomes across Ops, Intelligence, Growth, and AI enablement.">
+  <section class="rounded-2xl border bg-white p-7 shadow-sm">
+    <div class="text-xs uppercase tracking-[0.22em] text-neutral-500">Impact Library</div>
+    <h1 class="mt-3 text-3xl font-extrabold tracking-tight text-neutral-900">Fast-scan outcomes</h1>
+    <p class="mt-3 max-w-prose text-sm leading-6 text-neutral-700">
+      Designed for hiring managers: concise, outcome-based cards. Use filters to skim by theme.
+    </p>
+
+    <div class="mt-5 flex flex-wrap gap-2">
+      {tags.map((t) => (
+        <button
+          type="button"
+          data-tag={t}
+          class:list={[
+            "rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition",
+            t === "All" ? "bg-neutral-900 text-white" : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200",
+          ]}
+        >
+          {t}
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3" id="cards">
+    {tiles.map((c) => (
+      <article
+        class="card-tile rounded-2xl border bg-white p-6 shadow-sm"
+        data-tags={c.tags.join(",")}
+      >
+        <h2 class="text-sm font-semibold text-neutral-900">{c.title}</h2>
+        <p class="mt-2 text-sm leading-6 text-neutral-700">{c.desc}</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {c.tags.map((tag) => (
+            <span class="rounded-full bg-neutral-100 px-3 py-1 text-[11px] uppercase tracking-wider text-neutral-600">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <script is:inline>
+    {`
+      (function () {
+        const filterButtons = Array.from(document.querySelectorAll('button[data-tag]'));
+        const cards = Array.from(document.querySelectorAll('.card-tile'));
+
+        function setActive(tag) {
+          filterButtons.forEach(btn => {
+            const isActive = btn.dataset.tag === tag;
+            btn.classList.toggle('bg-neutral-900', isActive);
+            btn.classList.toggle('text-white', isActive);
+            btn.classList.toggle('bg-neutral-100', !isActive);
+            btn.classList.toggle('text-neutral-700', !isActive);
+          });
+
+          cards.forEach(card => {
+            const tags = (card.getAttribute('data-tags') || '').split(',').map(s => s.trim());
+            const show = tag === 'All' || tags.includes(tag);
+            card.style.display = show ? '' : 'none';
+          });
+        }
+
+        filterButtons.forEach(btn => btn.addEventListener('click', () => setActive(btn.dataset.tag)));
+        setActive('All');
+      })();
+    `}
+  </script>
+</PortfolioLayout>
